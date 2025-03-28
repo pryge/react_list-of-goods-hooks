@@ -18,9 +18,9 @@ export const goodsFromServer = [
 export const App: React.FC = () => {
   const [goods, setGoods] = useState([...goodsFromServer]);
   const [isReversed, setIsReversed] = useState(false);
-  const [isModified, setIsModified] = useState(false);
   const [isActive, setIsActive] = useState<null | string>(null);
   const [sortOrder, setSortOrder] = useState<null | string>(null); // Додано стан для збереження поточного сортування
+  const [, setIsModified] = useState(false); // Додано стан для відстеження змін
 
   const applySorting = (sortedGoods: string[]) => {
     setGoods(isReversed ? sortedGoods.reverse() : sortedGoods); // Застосування реверсування, якщо потрібно
@@ -38,7 +38,6 @@ export const App: React.FC = () => {
     applySorting(sortedGoods);
     setSortOrder('alphabetically'); // Зберігаємо поточний порядок сортування
     setIsModified(true);
-    setIsActive('alphabetically');
   };
 
   const sortByLength = () => {
